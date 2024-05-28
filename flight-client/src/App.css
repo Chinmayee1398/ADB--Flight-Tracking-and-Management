@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+/* src/App.css */
+.centered-h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.centered-image {
+  max-width: 20%;
+  height: auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.button-container button {
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
