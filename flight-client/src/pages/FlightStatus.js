@@ -1,12 +1,240 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import 'leaflet/dist/leaflet.css';
+import { Icon } from 'leaflet';
 
-const FlightStatus = () => {
+
+export function FlightTracker() {
+  const srhLocation = {
+    geocode: [49.41386, 8.65164],
+    popUp: 'SRH Heidelberg',
+  };
+
+
+
+  let { flightNumber } = useParams();
+
+
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const backendURL = `${process.env.REACT_APP_SERVER_HOSTNAME}:${process.env.REACT_APP_SERVER_PORT}`;
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${backendURL}/api/aviation/flights/${flightNumber}`);
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleRefresh = () => {
+    fetchData();
+  };
+
+  async function fetchAirportInfo(iata) {
+    try {
+      const response = await axios.get(`${backendURL}/api/aviation/airportInfo/${iata}`);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const [departureAirportInfo, setDepartureAirportInfo] = useState(null);
+  const [arrivalAirportInfo, setArrivalAirportInfo] = useState(null);
+
+  const latestFlight = data?.data[0];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (latestFlight?.departure?.iata && latestFlight?.arrival?.iata) {
+        const departureDataRes = await fetchAirportInfo(latestFlight.departure.iata);
+        const arrivalDataRes = await fetchAirportInfo(latestFlight.arrival.iata);
+        setDepartureAirportInfo(departureDataRes);
+        setArrivalAirportInfo(arrivalDataRes);
+      }
+    };
+
+    fetchData();
+  }, [latestFlight]);
+
   return (
-    <div>
-      <h1>Flight Status</h1>
-      <p>This is where you will display flight status.</p>
+    <div className="App">
+        <h1>Flight Status</h1>
+      <div>
+        {isLoading ? (
+          <p>Fetching Data...</p>
+        ) : (
+          <>
+            <MapContainer
+              center={
+                latestFlight?.live
+                  ? [latestFlight.live.latitude, latestFlight.live.longitude]
+                  : srhLocation.geocode
+              }
+              zoom={4}
+              style={{ height: '700px' }}
+            >
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution="Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors"
+              />
+
+              {departureAirportInfo && arrivalAirportInfo ? (
+                <>
+                  <Marker
+                    position={[
+                      departureAirportInfo.location.coordinates[1],
+                      departureAirportInfo.location.coordinates[0],
+                    ]}
+                   
+                  >
+                    <Popup>
+                      <h3>
+                        Departure: {departureAirportInfo.name} ({departureAirportInfo.iata})
+                      </h3>
+                      <p><strong>Terminal:</strong> {latestFlight?.departure?.terminal}</p>
+                      <p><strong>Gate:</strong> {latestFlight?.departure?.gate}</p>
+                      <p><strong>Delay:</strong> {latestFlight?.departure?.delay}</p>
+                      <p><strong>Scheduled:</strong> {latestFlight?.departure?.scheduled}</p>
+                      <p><strong>Actual:</strong> {latestFlight?.departure?.actual}</p>
+                    </Popup>
+                  </Marker>
+
+                  <Marker
+                    position={[
+                      arrivalAirportInfo.location.coordinates[1],
+                      arrivalAirportInfo.location.coordinates[0],
+                    ]}
+                 
+                  >
+                    <Popup>
+                      <h3>
+                        Arrival: {arrivalAirportInfo.name} ({arrivalAirportInfo.iata})
+                      </h3>
+                      <p><strong>Terminal:</strong> {latestFlight?.arrival?.terminal}</p>
+                      <p><strong>Gate:</strong> {latestFlight?.arrival?.gate}</p>
+                      <p><strong>Baggage:</strong> {latestFlight?.arrival?.baggage}</p>
+                      <p><strong>Delay:</strong> {latestFlight?.arrival?.delay}</p>
+                      <p><strong>Scheduled:</strong> {latestFlight?.arrival?.scheduled}</p>
+                      <p><strong>Actual:</strong> {latestFlight?.arrival?.actual}</p>
+                      <p>{arrivalAirportInfo.city}</p>
+                    </Popup>
+                  </Marker>
+
+                  <Polyline
+                    positions={[
+                      [
+                        departureAirportInfo.location.coordinates[1],
+                        departureAirportInfo.location.coordinates[0],
+                      ],
+                      [
+                        arrivalAirportInfo.location.coordinates[1],
+                        arrivalAirportInfo.location.coordinates[0],
+                      ],
+                    ]}
+                    color="green"
+                  />
+                </>
+              ) : null}
+
+              {latestFlight?.live ? (
+                <Marker position={[latestFlight.live.latitude, latestFlight.live.longitude]} >
+                  <Popup>
+                    <h3>{latestFlight?.airline?.name}</h3>
+                    <p><strong>Flight:</strong> {latestFlight?.flight?.iata}</p>
+                    <p><strong>Altitude:</strong> {latestFlight?.live?.altitude}</p>
+                    <p><strong>Horizontal Speed:</strong> {latestFlight?.live?.speed_horizontal}</p>
+                    <p><strong>Direction:</strong> {latestFlight?.live?.direction}</p>
+                    <p><strong>Vertical Speed:</strong> {latestFlight?.live?.speed_vertical}</p>
+                    <p><strong>Latest Update:</strong> {latestFlight?.live?.updated}</p>
+                    <p><strong>Latitude:</strong> {latestFlight?.live?.latitude}</p>
+                    <p><strong>Longitude:</strong> {latestFlight?.live?.longitude}</p>
+                    <p><strong>On Ground:</strong> {latestFlight?.departure?.is_ground ? "Yes" : "No"}</p>
+                  </Popup>
+                </Marker>
+              ) : null}
+            </MapContainer>
+
+            <div className="table-container">
+              <table className="flight-table">
+                <thead>
+                  <tr>
+                    <th className="header">Date</th>
+                    <th className="header">Status</th>
+                    <th className="header">Airport (Departure)</th>
+                    <th className="header">Terminal (Departure)</th>
+                    <th className="header">Gate (Departure)</th>
+                    <th className="header">Delay (Departure)</th>
+                    <th className="header">Scheduled (Departure)</th>
+                    <th className="header">Actual (Departure)</th>
+                    <th className="header">Estimated Runway (Departure)</th>
+                    <th className="header">Actual Runway (Departure)</th>
+                  </tr>
+                </thead>
+                {latestFlight && (
+                  <tbody>
+                    <tr>
+                      <td>{latestFlight.flight_date}</td>
+                      <td>{latestFlight.flight_status}</td>
+                      <td>{latestFlight.departure.airport}</td>
+                      <td>{latestFlight.departure.terminal}</td>
+                      <td>{latestFlight.departure.gate}</td>
+                      <td>{latestFlight.departure.delay}</td>
+                      <td>{latestFlight.departure.scheduled}</td>
+                      <td>{latestFlight.departure.actual}</td>
+                      <td>{latestFlight.departure.estimated_runway}</td>
+                      <td>{latestFlight.departure.actual_runway}</td>
+                    </tr>
+                  </tbody>
+                )}
+              </table>
+            </div>
+
+            <div className="table-container">
+              <table className="flight-table">
+                <thead>
+                  <tr>
+                    <th className="header">Airport (Arrival)</th>
+                    <th className="header">Terminal (Arrival)</th>
+                    <th className="header">Gate (Arrival)</th>
+                    <th className="header">Baggage (Arrival)</th>
+                    <th className="header">Delay (Arrival)</th>
+                    <th className="header">Scheduled (Arrival)</th>
+                    <th className="header">Actual (Arrival)</th>
+                  </tr>
+                </thead>
+                {latestFlight && (
+                  <tbody>
+                    <tr>
+                      <td>{latestFlight.arrival.airport}</td>
+                      <td>{latestFlight.arrival.terminal}</td>
+                      <td>{latestFlight.arrival.gate}</td>
+                      <td>{latestFlight.arrival.baggage}</td>
+                      <td>{latestFlight.arrival.delay}</td>
+                      <td>{latestFlight.arrival.scheduled}</td>
+                      <td>{latestFlight.arrival.actual}</td>
+                    </tr>
+                  </tbody>
+                )}
+              </table>
+            </div>
+
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
-export default FlightStatus;
+export default FlightTracker;
