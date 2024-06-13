@@ -12,6 +12,18 @@ const connectDB = async () => {
     console.error(err.message);
     process.exit(1);
   }
+  try {
+    await mongoose.connect(process.env.CHINMAYEE_MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected...');
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
 };
+
+
 
 module.exports = connectDB;
