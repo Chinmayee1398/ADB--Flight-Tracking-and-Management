@@ -17,7 +17,7 @@ const Home = () => {
         <img src={image} className="centered-image" alt="Airplane" />
       </div>
       <div className="button-container">
-        <button onClick={() => navigateTo('/flightinfo')}>Flight Information</button>
+        <button onClick={() => navigateTo('/flightfinder')}>Flight Information</button>
         <button onClick={() => navigateTo('/flightstatus')}>Flight Status</button>
         <button onClick={() => navigateTo('/airportfinder')}>Airport Finder</button>
         <button onClick={() => navigateTo('/airportinfo')}>Airport Information</button>
