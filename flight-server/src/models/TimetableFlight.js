@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // Define the schema for flight data
-const flightSchema = new mongoose.Schema({
+const flighttSchema = new mongoose.Schema({
   iataNumber: String,
   airline: {
     iataCode: String,
@@ -15,4 +15,4 @@ const flightSchema = new mongoose.Schema({
 });
 
 // Create and export the Flight model
-module.exports = mongoose.model('Flight', flightSchema);
+module.exports = mongoose.model('Flightt', flighttSchema);

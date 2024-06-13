@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const Flight = require('../models/TimetableFlight');
+const Flightt = require('../models/TimetableFlight');
 
 const getTimetable = async (req, res) => {
   try {
@@ -22,7 +22,7 @@ const getTimetable = async (req, res) => {
     if (Array.isArray(response.data)) {
       // Save fetched data to MongoDB
       try {
-        const result = await Flight.insertMany(response.data);
+        const result = await Flightt.insertMany(response.data);
         console.log(`Inserted ${result.length} records into MongoDB`);
       } catch (error) {
         console.error('Error inserting data into MongoDB:', error);

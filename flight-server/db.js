@@ -7,23 +7,23 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('MongoDB connected...');
+    console.log('First MongoDB connected...');
   } catch (err) {
     console.error(err.message);
     process.exit(1);
   }
+
   try {
-    await mongoose.connect(process.env.CHINMAYEE_MONGODB_URI, {
+    const conn2 = mongoose.createConnection(process.env.CHINMAYEE_MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('MongoDB connected...');
+    await conn2;
+    console.log('Second MongoDB connected...');
   } catch (err) {
     console.error(err.message);
     process.exit(1);
   }
 };
-
-
 
 module.exports = connectDB;
