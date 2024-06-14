@@ -4,7 +4,6 @@ const getTimetable = async (req, res) => {
   try {
     const { flightNumber, airline, departingFrom, status, fromTime, toTime } = req.query;
 
-    // Query MongoDB for flight data
     const flights = await Flight.find({
       flightNumber,
       airline,

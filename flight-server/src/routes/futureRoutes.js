@@ -1,4 +1,3 @@
-// src/routes/futureRoutes.js
 const express = require('express');
 const router = express.Router();
 const futureController = require('../controllers/futureController');

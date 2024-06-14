@@ -12,7 +12,7 @@ const getNearbyAirports = async (lat, lng, distance) => {
       }
     });
 
-    // Save fetched nearby airport data to MongoDB
+   
     await NearbyAirport.insertMany(response.data);
 
     return response.data;

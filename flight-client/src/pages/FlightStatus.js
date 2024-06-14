@@ -1,12 +1,11 @@
-//flightStatus.js
+
 
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import './FlightStatus.css'; // Import the CSS file
+import './FlightStatus.css'; 
 import L from 'leaflet';
 
-// Fix default marker icon issue with Webpack and Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
@@ -34,7 +33,7 @@ function FlightStatus() {
       if (data) {
         setFlightData(data);
       } else {
-        setFlightData(null); // No flight data found
+        setFlightData(null); 
       }
     } catch (error) {
       setError(error.message);

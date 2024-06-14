@@ -1,7 +1,7 @@
-// flightModel.js
+
 const mongoose = require('mongoose');
 
-// Define the schema for flight data
+
 const flighttSchema = new mongoose.Schema({
   iataNumber: String,
   airline: {

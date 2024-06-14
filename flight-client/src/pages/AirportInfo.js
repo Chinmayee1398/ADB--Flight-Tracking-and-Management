@@ -12,24 +12,21 @@ const AirportInfo = () => {
     if (submitted) {
       const fetchAirportData = async () => {
         try {
-          const now = new Date(); // Get the current time
-          const oneHourLater = new Date(now.getTime() + (60 * 60 * 1000)); // Get the time one hour later
-
-          // Format the current time and one hour later in ISO format
+          const now = new Date(); 
+          const oneHourLater = new Date(now.getTime() + (60 * 60 * 1000)); 
           const currentTime = now.toISOString();
           const oneHourLaterTime = oneHourLater.toISOString();
 
-          // Fetch arrival data
+        
           const arrivalResponse = await axios.get('http://localhost:5000/api/timetable/timetable', {
             params: {
               iataCode: selectedIataCode,
               type: 'arrival',
-              startTime: currentTime, // Set start time as current time
-              endTime: oneHourLaterTime, // Set end time as one hour later
+              startTime: currentTime, 
+              endTime: oneHourLaterTime, 
             },
           });
 
-          // Filter flights that are scheduled within the next hour
           const filteredArrivalData = arrivalResponse.data.filter(flight => {
             const flightTime = new Date(flight.departure.scheduledTime);
             return flightTime >= now && flightTime <= oneHourLater;
@@ -37,17 +34,16 @@ const AirportInfo = () => {
 
           setArrivalData(filteredArrivalData);
 
-          // Fetch departure data
+          
           const departureResponse = await axios.get('http://localhost:5000/api/timetable/timetable', {
             params: {
               iataCode: selectedIataCode,
               type: 'departure',
-              startTime: currentTime, // Set start time as current time
-              endTime: oneHourLaterTime, // Set end time as one hour later
+              startTime: currentTime, 
+              endTime: oneHourLaterTime, 
             },
           });
 
-          // Filter flights that are scheduled within the next hour
           const filteredDepartureData = departureResponse.data.filter(flight => {
             const flightTime = new Date(flight.arrival.scheduledTime);
             return flightTime >= now && flightTime <= oneHourLater;
@@ -75,7 +71,7 @@ const AirportInfo = () => {
           <th>Origin</th>
           <th>Status</th>
           <th>Scheduled Time</th>
-           {/* Add this line */}
+           
         </tr>
       </thead>
       <tbody>
@@ -85,7 +81,7 @@ const AirportInfo = () => {
             <td>{flight.departure.iataCode}</td>
             <td>{flight.status}</td>
             <td>{flight.departure.scheduledTime}</td>
-             {/* Add this line */}
+           
           </tr>
         ))}
       </tbody>
@@ -100,7 +96,7 @@ const AirportInfo = () => {
           <th>Destination</th>
           <th>Status</th>
           <th>Scheduled Time</th>
-           {/* Add this line */}
+           
         </tr>
       </thead>
       <tbody>
@@ -110,7 +106,7 @@ const AirportInfo = () => {
             <td>{flight.arrival.iataCode}</td>
             <td>{flight.status}</td>
             <td>{flight.arrival.scheduledTime}</td>
-             {/* Add this line */}
+          
           </tr>
         ))}
       </tbody>
