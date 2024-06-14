@@ -2,7 +2,7 @@
 const { createClient } = require('redis');
 const dotenv = require('dotenv');
 
-// Load environment variables from .env file
+
 dotenv.config();
 
 const client = createClient({
@@ -22,7 +22,7 @@ async function testRedisConnection() {
         await client.connect();
         console.log('Connected to Redis');
         
-        // Test a simple command
+   
         await client.set('test-key', 'Hello Redis');
         const value = await client.get('test-key');
         console.log('Value from Redis:', value);

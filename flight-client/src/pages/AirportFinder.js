@@ -13,7 +13,7 @@ const AirportFinder = () => {
           params: {
             lat,
             lng,
-            distance: 200, // You can adjust this distance as needed
+            distance: 200, 
           },
         });
     

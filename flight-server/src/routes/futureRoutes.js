@@ -1,4 +1,4 @@
-// flight-server/src/routes/flightRoutes.js
+
 
 const express = require('express');
 const futureController = require('../controllers/futureController');

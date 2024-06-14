@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './FlightFinder.css';  // Add this line
+import './FlightFinder.css';
 
 const FlightFinder = () => {
   const [travelDate, setTravelDate] = useState('');
