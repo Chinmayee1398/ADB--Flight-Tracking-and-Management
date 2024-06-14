@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import FlightInfo from './pages/FlightInfo';
+import FlightFinder from './pages/FlightFinder';
 import FlightStatus from './pages/FlightStatus';
 import AirportFinder from './pages/AirportFinder';
 import AirportInfo from './pages/AirportInfo';
@@ -13,7 +13,7 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/flightinfo" element={<FlightInfo />} />
+          <Route path="/flightfinder" element={<FlightFinder />} />
           <Route path="/flightstatus" element={<FlightStatus />} />
           <Route path="/airportfinder" element={<AirportFinder />} />
           <Route path="/airportinfo" element={<AirportInfo />} />
