@@ -35,8 +35,8 @@ app.use('/api/timetable', timetableRoutes); // Use flightRoutes middleware here
 // Use airportRoutes for any requests that start with /api/airports
 app.use('/api/airports', airportRoutes); // Use airportRoutes middleware here
 
-app.use('/api', futureRoutes); // Use futureRoutes middleware here
-
+// Use futureRoutes for any requests that start with /api/future-flights
+app.use('/api/future-flights', futureRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
