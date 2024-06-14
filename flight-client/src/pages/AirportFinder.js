@@ -15,7 +15,9 @@ const AirportFinder = () => {
             lng,
             distance: 200, 
           },
-        });
+        });      
+        
+        
     
         setNearestAirports(response.data.filter(station => station.codeIcaoAirport !== '' && station.codeIataCity !== null));
       } catch (error) {
@@ -23,6 +25,7 @@ const AirportFinder = () => {
         setError('Failed to fetch nearest airports. Please try again later.');
       }
     };
+    
 
     const getLocation = () => {
       if (navigator.geolocation) {

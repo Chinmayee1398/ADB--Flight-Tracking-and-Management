@@ -1,128 +1,115 @@
-const axios = require('axios');
 const neo4j = require('neo4j-driver');
+require('dotenv').config();
 
-// Initialize Neo4j driver with environment variables
 const driver = neo4j.driver(
-  process.env.NEO4J_URI,
-  neo4j.auth.basic(process.env.NEO4J_USER, process.env.NEO4J_PASSWORD)
+    process.env.NEO4J_URI,
+    neo4j.auth.basic(process.env.NEO4J_USER, process.env.NEO4J_PASSWORD)
 );
 
-// Verify Neo4j connectivity
 driver.verifyConnectivity()
   .then(() => console.log('Successfully connected to Neo4j'))
   .catch(error => console.error('Failed to connect to Neo4j:', error));
 
-// Function to fetch data with retry mechanism for handling rate limits
-const fetchWithRetry = async (url, params, retries = 5, delay = 1000) => {
-  for (let i = 0; i < retries; i++) {
+const ensureIndexes = async () => {
+    const session = driver.session();
     try {
-      const response = await axios.get(url, { params });
-      return response.data;
+        await session.run(`CREATE INDEX IF NOT EXISTS FOR (f:Flight) ON (f.flightNumber)`);
+        await session.run(`CREATE INDEX IF NOT EXISTS FOR (f:Flight) ON (f.date)`);
+        await session.run(`CREATE INDEX IF NOT EXISTS FOR (f:Flight) ON (f.time)`);
+        await session.run(`CREATE INDEX IF NOT EXISTS FOR (a:Airport) ON (a.iataCode)`);
+        await session.run(`CREATE INDEX IF NOT EXISTS FOR (al:Airline) ON (al.iataCode)`);
     } catch (error) {
-      if (error.response && error.response.status === 429) {
-        console.log(`Rate limited. Waiting for ${delay}ms before retrying...`);
-        await new Promise(resolve => setTimeout(resolve, delay));
-        delay *= 2;  // Exponential backoff
-      } else {
-        throw error;
-      }
+        console.error('Error creating indexes:', error);
+    } finally {
+        await session.close();
     }
-  }
-  throw new Error('Max retries reached');
 };
 
-exports.getFutureFlights = async (req, res) => {
-  const session = driver.session();
-  
-  try {
-    const { depIata, date } = req.query;
+exports.fetchAndStoreFlights = async (req, res) => {
+    const fetch = (await import('node-fetch')).default;
+    const { departure, arrival, date } = req.query;
+    const apiKey = process.env.AVIATION_EDGE_API_KEY;
+    const url = `https://aviation-edge.com/v2/public/flightsFuture?key=${apiKey}&type=departure&iataCode=${departure}&date=${date}`;
 
-    if (!depIata) {
-      console.error('Missing depIata');
-      return res.status(400).send('Missing depIata');
-    }
-
-    const params = {
-      key: process.env.AVIATION_EDGE_API_KEY,
-      type: 'departure',
-      iataCode: depIata,
-      date,
-    };
-
-    const response = await fetchWithRetry('https://aviation-edge.com/v2/public/flightsFuture', params);
-    console.log(`Fetched ${response.length} records from Aviation Edge API`);
-
-    if (Array.isArray(response)) {
-      let insertedCount = 0;
-
-      for (const flight of response) {
-        try {
-          // Fetch departure and arrival airport data in parallel
-          const [departureAirportResponse, arrivalAirportResponse] = await Promise.all([
-            fetchWithRetry('https://aviation-edge.com/v2/public/airportDatabase', {
-              key: process.env.AVIATION_EDGE_API_KEY,
-              codeIataAirport: flight.departure.iataCode,
-            }).catch(error => {
-              console.error(`Failed to fetch data for airport ${flight.departure.iataCode}: ${error}`);
-              return null;
-            }),
-            fetchWithRetry('https://aviation-edge.com/v2/public/airportDatabase', {
-              key: process.env.AVIATION_EDGE_API_KEY,
-              codeIataAirport: flight.arrival.iataCode,
-            }).catch(error => {
-              console.error(`Failed to fetch data for airport ${flight.arrival.iataCode}: ${error}`);
-              return null;
-            }),
-          ]);
-
-          if (!departureAirportResponse || !arrivalAirportResponse) {
-            continue;
-          }
-
-          const departureAirportName = departureAirportResponse[0]?.nameAirport || 'Unknown';
-          const arrivalAirportName = arrivalAirportResponse[0]?.nameAirport || 'Unknown';
-
-          await session.run(
-            `
-            MERGE (d:Airport {iata: $departure})
-            ON CREATE SET d.name = $departureName
-            MERGE (a:Airport {iata: $arrival})
-            ON CREATE SET a.name = $arrivalName
-            MERGE (f:Flight {flightNumber: $flightNumber, airline: $airline, departure: $departure, arrival: $arrival})
-            MERGE (f)-[:DEPARTS_FROM]->(d)
-            MERGE (f)-[:ARRIVES_AT]->(a)
-            `,
-            {
-              departure: flight.departure.iataCode,
-              departureName: departureAirportName,
-              arrival: flight.arrival.iataCode,
-              arrivalName: arrivalAirportName,
-              flightNumber: flight.flight.number,
-              airline: flight.airline.iataCode,
-            }
-          );
-
-          insertedCount++;
-        } catch (error) {
-          console.error(`Failed to insert flight: ${flight.flight.number}`, error);
-        }
-      }
-      console.log(`Successfully processed ${response.length} flights.`);
-      console.log(`Inserted ${insertedCount} flights into Neo4j.`);
-    } else {
-      console.error('Response is not an array:', response);
-    }
-
-    res.json(response);
-  } catch (error) {
-    console.error('Error fetching and saving data:', error);
-    res.status(500).send('Server Error');
-  } finally {
     try {
-      await session.close();
-      console.log('Neo4j session closed.');
-    } catch (closeError) {
-      console.error('Error closing Neo4j session:', closeError);
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+            console.error('Unexpected response:', data);
+            res.status(500).json({ error: 'Failed to fetch flight data' });
+            return;
+        }
+
+        console.log(`Fetched ${data.length} records from the API.`);
+
+        const session = driver.session();
+        let insertedCount = 0;
+
+        for (let flight of data) {
+            if (!flight.flight || !flight.departure || !flight.arrival || !flight.aircraft || !flight.airline) {
+                console.warn('Skipping flight due to missing data:', flight);
+                continue;
+            }
+            if (typeof flight.departure.scheduledTime !== 'string') {
+                console.warn('Skipping flight due to invalid scheduledTime:', flight.departure.scheduledTime);
+                continue;
+            }
+        
+            const flightData = {
+                flightNumber: flight.flight.number,
+                departure: flight.departure.iataCode,
+                arrival: flight.arrival.iataCode,
+                date: date, // use the date provided by the user
+                time: flight.departure.scheduledTime, // directly assign scheduledTime to time
+                airline: flight.airline.iataCode,
+                status: 'Unknown',
+                aircraft: flight.aircraft.modelCode,
+                live: false
+            };
+
+            const query = `
+            MERGE (f:Flight {flightNumber: $flightNumber})
+            ON CREATE SET f.date = $date, f.time = $time, f.status = $status, f.aircraft = $aircraft, f.live = $live, f.departure = $departure, f.arrival = $arrival, f.airline = $airline
+            ON MATCH SET f.date = $date, f.time = $time, f.status = $status, f.aircraft = $aircraft, f.live = $live, f.departure = $departure, f.arrival = $arrival, f.airline = $airline
+            MERGE (dep:Airport {iataCode: $departure})
+            MERGE (arr:Airport {iataCode: $arrival})     
+            MERGE (al:Airline {iataCode: $airline})
+            `;
+            await session.run(query, flightData);
+            insertedCount++;
+        }
+        session.close();
+        console.log(`Inserted ${insertedCount} records into the database.`);
+        res.json({ message: 'Flight data fetched and stored successfully' });
+    } catch (error) {
+        console.error('Error fetching and storing flight data:', error);
+        res.status(500).json({ error: 'Failed to fetch and store flight data' });
     }
-  }
 };
+
+exports.getStoredFlights = async (req, res) => {
+    const { departure, arrival, date } = req.query;
+
+    try {
+        const session = driver.session();
+        const result = await session.run(
+            `MATCH (f:Flight)
+             WHERE f.date STARTS WITH $date AND f.departure = $departure AND f.arrival = $arrival
+             RETURN f`,
+            { departure, arrival, date }
+        );
+
+        const flights = result.records.map(record => ({
+            flight: record.get('f').properties
+        }));
+        console.log(`Fetched ${flights.length} records from the database.`);
+        session.close();
+        res.json(flights);
+    } catch (error) {
+        console.error('Error retrieving stored flight data:', error);
+        res.status(500).json({ error: 'Failed to retrieve stored flight data' });
+    }
+};
+
+ensureIndexes();

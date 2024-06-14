@@ -35,7 +35,9 @@ app.use('/api/timetable', timetableRoutes);
 
 app.use('/api/airports', airportRoutes); 
 
-app.use('/api', futureRoutes); 
+
+app.use('/api/future-flights', futureRoutes);
+
 
 
 app.listen(port, () => {
