@@ -1,0 +1,1505 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -148.111307,
+               66.219228
+            ]
+         },
+         "properties": {
+            "Flight_name": "NL602",
+            "arrived_in": "YYZ",
+            "date": "2023-07-15T22:00:07.397469"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -137.442176,
+               -2.785645
+            ]
+         },
+         "properties": {
+            "Flight_name": "IR549",
+            "arrived_in": "DEN",
+            "date": "2023-07-20T12:34:07.397501"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -33.589212,
+               34.173297
+            ]
+         },
+         "properties": {
+            "Flight_name": "JB841",
+            "arrived_in": "JFK",
+            "date": "2024-04-06T14:00:07.397521"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               57.216646,
+               -72.347421
+            ]
+         },
+         "properties": {
+            "Flight_name": "MP768",
+            "arrived_in": "ATL",
+            "date": "2023-07-29T11:01:07.397544"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               98.297991,
+               -3.254856
+            ]
+         },
+         "properties": {
+            "Flight_name": "BR519",
+            "arrived_in": "DFW",
+            "date": "2024-03-20T09:50:07.397564"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               116.314077,
+               52.501362
+            ]
+         },
+         "properties": {
+            "Flight_name": "OG659",
+            "arrived_in": "SEA",
+            "date": "2023-08-25T18:52:07.397584"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -39.769313,
+               -74.574558
+            ]
+         },
+         "properties": {
+            "Flight_name": "BN305",
+            "arrived_in": "ORD",
+            "date": "2024-01-09T20:59:07.397603"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -44.040464,
+               33.056265
+            ]
+         },
+         "properties": {
+            "Flight_name": "WO761",
+            "arrived_in": "ATL",
+            "date": "2023-12-10T12:27:07.397627"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               11.207429,
+               -81.356951
+            ]
+         },
+         "properties": {
+            "Flight_name": "NI568",
+            "arrived_in": "JFK",
+            "date": "2023-12-15T21:26:07.397648"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -125.665888,
+               43.393898
+            ]
+         },
+         "properties": {
+            "Flight_name": "LR516",
+            "arrived_in": "LAS",
+            "date": "2024-03-24T15:38:07.397667"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               172.405015,
+               80.883728
+            ]
+         },
+         "properties": {
+            "Flight_name": "UH660",
+            "arrived_in": "ORD",
+            "date": "2024-01-22T05:33:07.397702"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -15.233554,
+               -52.536855
+            ]
+         },
+         "properties": {
+            "Flight_name": "OY535",
+            "arrived_in": "SFO",
+            "date": "2024-02-24T18:36:07.397722"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               95.056287,
+               -6.381261
+            ]
+         },
+         "properties": {
+            "Flight_name": "BQ167",
+            "arrived_in": "JFK",
+            "date": "2023-10-07T23:36:07.397739"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               137.901962,
+               80.916608
+            ]
+         },
+         "properties": {
+            "Flight_name": "JI638",
+            "arrived_in": "DEN",
+            "date": "2024-02-01T09:00:07.397754"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               15.965253,
+               30.2704
+            ]
+         },
+         "properties": {
+            "Flight_name": "CE934",
+            "arrived_in": "YYZ",
+            "date": "2023-12-04T11:53:07.397771"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -27.496961,
+               78.545065
+            ]
+         },
+         "properties": {
+            "Flight_name": "JA126",
+            "arrived_in": "YYZ",
+            "date": "2024-04-09T14:24:07.397788"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -129.432963,
+               85.150789
+            ]
+         },
+         "properties": {
+            "Flight_name": "WZ205",
+            "arrived_in": "DFW",
+            "date": "2024-05-22T16:37:07.397805"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -170.337841,
+               -75.056137
+            ]
+         },
+         "properties": {
+            "Flight_name": "EG437",
+            "arrived_in": "JFK",
+            "date": "2024-05-01T04:50:07.397822"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               26.878947,
+               48.07782
+            ]
+         },
+         "properties": {
+            "Flight_name": "BY829",
+            "arrived_in": "LAX",
+            "date": "2024-01-25T21:51:07.397840"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -170.498728,
+               5.823977
+            ]
+         },
+         "properties": {
+            "Flight_name": "SY466",
+            "arrived_in": "YYZ",
+            "date": "2024-04-01T03:54:07.397856"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               153.91646,
+               -22.156577
+            ]
+         },
+         "properties": {
+            "Flight_name": "LA923",
+            "arrived_in": "JFK",
+            "date": "2024-02-01T04:45:07.397887"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -46.600853,
+               85.646981
+            ]
+         },
+         "properties": {
+            "Flight_name": "NJ677",
+            "arrived_in": "JFK",
+            "date": "2024-03-16T23:01:07.397905"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               118.805209,
+               0.762053
+            ]
+         },
+         "properties": {
+            "Flight_name": "EZ433",
+            "arrived_in": "LAX",
+            "date": "2023-10-31T07:47:07.397922"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               37.839011,
+               53.936578
+            ]
+         },
+         "properties": {
+            "Flight_name": "XY258",
+            "arrived_in": "YYZ",
+            "date": "2023-09-16T15:36:07.397934"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               143.453714,
+               -65.119076
+            ]
+         },
+         "properties": {
+            "Flight_name": "TN616",
+            "arrived_in": "DFW",
+            "date": "2024-02-02T21:37:07.397945"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -36.227855,
+               15.728975
+            ]
+         },
+         "properties": {
+            "Flight_name": "OB330",
+            "arrived_in": "ATL",
+            "date": "2023-06-22T16:16:07.397956"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -134.187588,
+               -39.97543
+            ]
+         },
+         "properties": {
+            "Flight_name": "VW109",
+            "arrived_in": "SEA",
+            "date": "2023-10-28T10:52:07.397966"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               1.158787,
+               -72.091611
+            ]
+         },
+         "properties": {
+            "Flight_name": "QO292",
+            "arrived_in": "ATL",
+            "date": "2024-01-07T05:20:07.397975"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               25.741186,
+               34.646556
+            ]
+         },
+         "properties": {
+            "Flight_name": "AL573",
+            "arrived_in": "JFK",
+            "date": "2024-01-12T08:42:07.397985"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               10.700937,
+               -24.061602
+            ]
+         },
+         "properties": {
+            "Flight_name": "NX967",
+            "arrived_in": "YYZ",
+            "date": "2024-02-20T15:40:07.397998"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -141.800134,
+               -85.469028
+            ]
+         },
+         "properties": {
+            "Flight_name": "AD711",
+            "arrived_in": "ORD",
+            "date": "2024-03-04T18:41:07.398014"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -117.897758,
+               56.641311
+            ]
+         },
+         "properties": {
+            "Flight_name": "XV638",
+            "arrived_in": "DFW",
+            "date": "2024-04-14T15:22:07.398032"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               88.759061,
+               -85.824939
+            ]
+         },
+         "properties": {
+            "Flight_name": "TW822",
+            "arrived_in": "DEN",
+            "date": "2024-01-22T03:54:07.398046"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               87.175405,
+               28.709516
+            ]
+         },
+         "properties": {
+            "Flight_name": "XA959",
+            "arrived_in": "YYZ",
+            "date": "2024-05-09T07:37:07.398062"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -141.597672,
+               -16.3095
+            ]
+         },
+         "properties": {
+            "Flight_name": "YQ941",
+            "arrived_in": "DEN",
+            "date": "2023-09-26T06:31:07.398078"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -98.369753,
+               -35.581602
+            ]
+         },
+         "properties": {
+            "Flight_name": "YI119",
+            "arrived_in": "YYZ",
+            "date": "2024-02-24T23:56:07.398088"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -169.811643,
+               -68.041725
+            ]
+         },
+         "properties": {
+            "Flight_name": "KI624",
+            "arrived_in": "JFK",
+            "date": "2023-07-25T10:41:07.398098"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -80.226527,
+               65.236344
+            ]
+         },
+         "properties": {
+            "Flight_name": "KN217",
+            "arrived_in": "DEN",
+            "date": "2024-06-01T03:28:07.398109"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -93.731363,
+               -86.049876
+            ]
+         },
+         "properties": {
+            "Flight_name": "CS826",
+            "arrived_in": "SFO",
+            "date": "2024-03-01T17:02:07.398119"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -109.941155,
+               -49.895858
+            ]
+         },
+         "properties": {
+            "Flight_name": "UA668",
+            "arrived_in": "SFO",
+            "date": "2024-03-25T20:17:07.398129"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -153.369073,
+               30.685455
+            ]
+         },
+         "properties": {
+            "Flight_name": "CJ425",
+            "arrived_in": "DEN",
+            "date": "2023-10-07T01:34:07.398139"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               89.966664,
+               27.007677
+            ]
+         },
+         "properties": {
+            "Flight_name": "RG868",
+            "arrived_in": "ATL",
+            "date": "2024-03-11T07:44:07.398150"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               105.812688,
+               -5.895612
+            ]
+         },
+         "properties": {
+            "Flight_name": "YF616",
+            "arrived_in": "YYZ",
+            "date": "2023-07-17T06:39:07.398166"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               80.81944,
+               44.906685
+            ]
+         },
+         "properties": {
+            "Flight_name": "ZQ607",
+            "arrived_in": "YYZ",
+            "date": "2024-02-13T01:55:07.398182"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -152.541142,
+               54.946069
+            ]
+         },
+         "properties": {
+            "Flight_name": "QU600",
+            "arrived_in": "SFO",
+            "date": "2023-07-31T08:58:07.398201"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -71.047771,
+               7.143733
+            ]
+         },
+         "properties": {
+            "Flight_name": "OK670",
+            "arrived_in": "SEA",
+            "date": "2023-10-10T22:04:07.398220"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               147.221554,
+               -50.74125
+            ]
+         },
+         "properties": {
+            "Flight_name": "ZQ553",
+            "arrived_in": "JFK",
+            "date": "2024-02-08T05:28:07.398237"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               15.510038,
+               47.136455
+            ]
+         },
+         "properties": {
+            "Flight_name": "QH198",
+            "arrived_in": "DEN",
+            "date": "2024-03-18T12:24:07.398254"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               41.740667,
+               49.238696
+            ]
+         },
+         "properties": {
+            "Flight_name": "HB129",
+            "arrived_in": "LAS",
+            "date": "2024-04-11T19:26:07.398270"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -104.09852,
+               30.985064
+            ]
+         },
+         "properties": {
+            "Flight_name": "PH302",
+            "arrived_in": "ATL",
+            "date": "2023-11-06T08:00:07.398286"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -110.292376,
+               -87.806073
+            ]
+         },
+         "properties": {
+            "Flight_name": "YD304",
+            "arrived_in": "SFO",
+            "date": "2023-11-25T17:46:07.398298"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -75.756405,
+               -47.895042
+            ]
+         },
+         "properties": {
+            "Flight_name": "CX432",
+            "arrived_in": "ATL",
+            "date": "2023-12-16T01:24:07.398308"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -23.60853,
+               35.886916
+            ]
+         },
+         "properties": {
+            "Flight_name": "KS650",
+            "arrived_in": "DFW",
+            "date": "2024-01-16T06:03:07.398318"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               28.049243,
+               -14.10754
+            ]
+         },
+         "properties": {
+            "Flight_name": "FD926",
+            "arrived_in": "DEN",
+            "date": "2024-06-08T17:50:07.398328"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               51.753134,
+               -51.978152
+            ]
+         },
+         "properties": {
+            "Flight_name": "MO143",
+            "arrived_in": "JFK",
+            "date": "2024-03-17T10:38:07.398338"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -131.231748,
+               -36.953818
+            ]
+         },
+         "properties": {
+            "Flight_name": "LA716",
+            "arrived_in": "ORD",
+            "date": "2024-01-18T10:32:07.398349"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -80.289694,
+               -7.180691
+            ]
+         },
+         "properties": {
+            "Flight_name": "YK844",
+            "arrived_in": "DEN",
+            "date": "2023-12-04T12:03:07.398359"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -107.195615,
+               -18.852097
+            ]
+         },
+         "properties": {
+            "Flight_name": "NS774",
+            "arrived_in": "ORD",
+            "date": "2023-10-10T16:16:07.398375"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               124.021402,
+               44.095698
+            ]
+         },
+         "properties": {
+            "Flight_name": "VO243",
+            "arrived_in": "DFW",
+            "date": "2023-12-08T16:19:07.398385"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -1.373291,
+               -40.94661
+            ]
+         },
+         "properties": {
+            "Flight_name": "XP965",
+            "arrived_in": "JFK",
+            "date": "2023-10-04T02:37:07.398395"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -92.695658,
+               -18.553082
+            ]
+         },
+         "properties": {
+            "Flight_name": "UA264",
+            "arrived_in": "JFK",
+            "date": "2024-01-12T18:18:07.398405"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -109.361169,
+               -88.224753
+            ]
+         },
+         "properties": {
+            "Flight_name": "QS634",
+            "arrived_in": "SFO",
+            "date": "2024-01-17T01:59:07.398414"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -57.570071,
+               16.037039
+            ]
+         },
+         "properties": {
+            "Flight_name": "HR725",
+            "arrived_in": "JFK",
+            "date": "2024-02-15T03:29:07.398424"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -177.05624,
+               10.543135
+            ]
+         },
+         "properties": {
+            "Flight_name": "DQ130",
+            "arrived_in": "SFO",
+            "date": "2024-06-04T03:20:07.398434"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -109.47406,
+               52.483572
+            ]
+         },
+         "properties": {
+            "Flight_name": "DO307",
+            "arrived_in": "LAS",
+            "date": "2023-11-05T10:29:07.398444"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               148.387454,
+               -34.960962
+            ]
+         },
+         "properties": {
+            "Flight_name": "FH970",
+            "arrived_in": "DFW",
+            "date": "2023-11-20T19:10:07.398454"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -99.046446,
+               -17.532069
+            ]
+         },
+         "properties": {
+            "Flight_name": "ZL683",
+            "arrived_in": "ATL",
+            "date": "2024-06-02T16:52:07.398590"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               150.066468,
+               70.185209
+            ]
+         },
+         "properties": {
+            "Flight_name": "ZP260",
+            "arrived_in": "ORD",
+            "date": "2023-09-03T22:44:07.398603"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -83.711756,
+               -81.969034
+            ]
+         },
+         "properties": {
+            "Flight_name": "BR680",
+            "arrived_in": "LAS",
+            "date": "2023-09-22T13:55:07.398615"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               127.079987,
+               19.885292
+            ]
+         },
+         "properties": {
+            "Flight_name": "HZ563",
+            "arrived_in": "SFO",
+            "date": "2024-04-09T22:14:07.398632"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -171.163042,
+               86.167371
+            ]
+         },
+         "properties": {
+            "Flight_name": "KQ430",
+            "arrived_in": "YYZ",
+            "date": "2023-12-29T23:17:07.398647"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -83.104178,
+               -16.670823
+            ]
+         },
+         "properties": {
+            "Flight_name": "EE474",
+            "arrived_in": "SEA",
+            "date": "2023-08-25T06:01:07.398665"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -169.509699,
+               -13.034394
+            ]
+         },
+         "properties": {
+            "Flight_name": "AG473",
+            "arrived_in": "ATL",
+            "date": "2024-06-14T09:04:07.398682"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -140.70846,
+               -88.354921
+            ]
+         },
+         "properties": {
+            "Flight_name": "QY540",
+            "arrived_in": "SEA",
+            "date": "2024-01-05T05:50:07.398699"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -118.198429,
+               -15.795623
+            ]
+         },
+         "properties": {
+            "Flight_name": "BR870",
+            "arrived_in": "LAX",
+            "date": "2023-12-09T10:19:07.398716"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               106.192516,
+               44.02409
+            ]
+         },
+         "properties": {
+            "Flight_name": "UP324",
+            "arrived_in": "LAX",
+            "date": "2024-04-05T06:59:07.398736"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -164.703576,
+               -51.601658
+            ]
+         },
+         "properties": {
+            "Flight_name": "WU795",
+            "arrived_in": "LAX",
+            "date": "2023-10-17T19:00:07.398753"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -93.834637,
+               -88.698254
+            ]
+         },
+         "properties": {
+            "Flight_name": "KW633",
+            "arrived_in": "ORD",
+            "date": "2024-05-26T19:26:07.398770"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               133.409809,
+               4.510728
+            ]
+         },
+         "properties": {
+            "Flight_name": "NM273",
+            "arrived_in": "JFK",
+            "date": "2024-02-16T17:28:07.398786"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -18.33587,
+               84.999828
+            ]
+         },
+         "properties": {
+            "Flight_name": "BF297",
+            "arrived_in": "YYZ",
+            "date": "2023-06-22T13:31:07.398818"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               33.790291,
+               1.471494
+            ]
+         },
+         "properties": {
+            "Flight_name": "MS323",
+            "arrived_in": "JFK",
+            "date": "2023-09-15T08:37:07.398829"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -140.073663,
+               -71.659143
+            ]
+         },
+         "properties": {
+            "Flight_name": "XY437",
+            "arrived_in": "YYZ",
+            "date": "2024-02-08T08:28:07.398838"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               78.979287,
+               -0.880881
+            ]
+         },
+         "properties": {
+            "Flight_name": "ED807",
+            "arrived_in": "ATL",
+            "date": "2023-11-30T11:48:07.398848"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               44.608784,
+               59.485744
+            ]
+         },
+         "properties": {
+            "Flight_name": "JI574",
+            "arrived_in": "SFO",
+            "date": "2023-08-15T01:02:07.398858"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               24.387103,
+               45.644158
+            ]
+         },
+         "properties": {
+            "Flight_name": "EM932",
+            "arrived_in": "YYZ",
+            "date": "2023-07-29T23:40:07.398873"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -12.305949,
+               -27.245723
+            ]
+         },
+         "properties": {
+            "Flight_name": "IN231",
+            "arrived_in": "YYZ",
+            "date": "2024-02-03T10:57:07.398883"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               99.093919,
+               -38.762551
+            ]
+         },
+         "properties": {
+            "Flight_name": "XM731",
+            "arrived_in": "LAS",
+            "date": "2023-08-22T14:27:07.398893"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               161.189374,
+               37.754069
+            ]
+         },
+         "properties": {
+            "Flight_name": "TQ450",
+            "arrived_in": "LAS",
+            "date": "2023-09-01T16:53:07.398904"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               100.307293,
+               52.848759
+            ]
+         },
+         "properties": {
+            "Flight_name": "DZ378",
+            "arrived_in": "YYZ",
+            "date": "2023-10-25T11:04:07.398915"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               30.906029,
+               27.110973
+            ]
+         },
+         "properties": {
+            "Flight_name": "FV569",
+            "arrived_in": "JFK",
+            "date": "2023-11-13T21:10:07.398929"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               155.618303,
+               63.215883
+            ]
+         },
+         "properties": {
+            "Flight_name": "BC590",
+            "arrived_in": "LAS",
+            "date": "2024-05-29T10:28:07.398939"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -82.136502,
+               62.747426
+            ]
+         },
+         "properties": {
+            "Flight_name": "LA565",
+            "arrived_in": "JFK",
+            "date": "2024-01-08T11:57:07.398949"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -133.403146,
+               74.20702
+            ]
+         },
+         "properties": {
+            "Flight_name": "RM192",
+            "arrived_in": "LAX",
+            "date": "2023-08-13T12:26:07.398965"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -150.719979,
+               -75.656184
+            ]
+         },
+         "properties": {
+            "Flight_name": "QY942",
+            "arrived_in": "YYZ",
+            "date": "2024-04-09T21:21:07.398983"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               177.697654,
+               -77.318347
+            ]
+         },
+         "properties": {
+            "Flight_name": "TP209",
+            "arrived_in": "LAS",
+            "date": "2023-12-10T14:35:07.399000"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -112.646563,
+               -4.843849
+            ]
+         },
+         "properties": {
+            "Flight_name": "VY162",
+            "arrived_in": "LAX",
+            "date": "2023-12-05T00:53:07.399014"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -116.416777,
+               -43.98975
+            ]
+         },
+         "properties": {
+            "Flight_name": "MP453",
+            "arrived_in": "DFW",
+            "date": "2024-02-19T11:12:07.399035"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               44.198792,
+               -89.079941
+            ]
+         },
+         "properties": {
+            "Flight_name": "LB117",
+            "arrived_in": "ATL",
+            "date": "2024-02-24T07:43:07.399047"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -37.534386,
+               -4.266091
+            ]
+         },
+         "properties": {
+            "Flight_name": "QS883",
+            "arrived_in": "LAS",
+            "date": "2023-09-12T14:42:07.399057"
+         }
+      },
+      {
+         "type": "Feature",
+         "geometry": {
+            "type": "Point",
+            "coordinates": [
+               -107.26549,
+               -55.465507
+            ]
+         },
+         "properties": {
+            "Flight_name": "EV569",
+            "arrived_in": "YYZ",
+            "date": "2024-02-07T23:19:07.399067"
+         }
+      }
+   ]
+}
