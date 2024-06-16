@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mapbox GL JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
+
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+ mapboxgl.accessToken = 'pk.eyJ1IjoibGV2ZWw5bmluZSIsImEiOiJjbHgxMGliczUwNzBkMmlxcHY5eGl3NXVuIn0.U42ZWqijRx_UDu-ciiBZmw';
+
+ const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/level9nine/clxdqm3b8001j01pc3ekp0phz',
+    zoom: 1,
+    center: [13.5020, 52.3667], // Centered to show the world map
+    projection: 'globe',
+    bearing: 0, // Start with no rotation
+    pitch: 10, // Tilt the view to simulate a globe
+});
+
+map.on('style.load', () => {
+    map.setFog({}); // Set the default atmosphere style
+});
+
+let spinEnabled = true;
+let userInteracting = false;
+const maxSpinZoom = 5;
+const slowSpinZoom = 3;
+const secondsPerRevolution = 120;
+let lastInteractionTime = Date.now();
+const interactionTimeout = 3000; // 3 seconds of no interaction to resume spinning
+
+function spinGlobe() {
+    const now = Date.now();
+    if (spinEnabled && !userInteracting && (now - lastInteractionTime > interactionTimeout)) {
+        const zoom = map.getZoom();
+        if (zoom < maxSpinZoom) {
+            let distancePerSecond = 360 / secondsPerRevolution;
+            if (zoom > slowSpinZoom) {
+                // Slow spinning at higher zooms
+                const zoomDif = (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
+                distancePerSecond *= zoomDif;
+            }
+            const center = map.getCenter();
+            center.lng -= distancePerSecond / 60; // divide by 60 to get per-frame movement
+            map.setCenter(center);
+        }
+    }
+    // Schedule the next frame.
+    requestAnimationFrame(spinGlobe);
+}
+
+// Event listeners to handle user interaction
+function onInteractionStart() {
+    userInteracting = true;
+    lastInteractionTime = Date.now();
+}
+
+function onInteractionEnd() {
+    userInteracting = false;
+    lastInteractionTime = Date.now();
+}
+
+map.on('mousedown', onInteractionStart);
+map.on('dragstart', onInteractionStart);
+map.on('zoomstart', onInteractionStart);
+map.on('rotate', onInteractionStart);
+
+map.on('mouseup', onInteractionEnd);
+map.on('dragend', onInteractionEnd);
+map.on('zoomend', onInteractionEnd);
+
+// Start the spinning
+spinGlobe();
+
+    async function fetchFlightData() {
+        const response = await fetch('/api/flights');
+        const flightData = await response.json();
+        return flightData;
+    }
+
+    async function fetchFlightData2() {
+        const response = await fetch('/api/flights3');
+        const flightData = await response.json();
+        return flightData;
+    }
+
+    async function fetchFlightData4() {
+        const response = await fetch('/api/flights4');
+        const flightData = await response.json();
+        return flightData;
+    }
+
+    async function updateFlights() {
+        const flightData = await fetchFlightData();
+        console.log(flightData);
+        flightData.forEach((flight, index) => {
+            if (flight.geography) {
+                const aircraftLatLng = [flight.geography.longitude, flight.geography.latitude];
+                const frankfurtLatLng = [8.5706, 50.0333]; // Frankfurt airport coordinates
+                drawRoute(`frankfurt${index}`, frankfurtLatLng, aircraftLatLng, flight);
+            }
+        });
+    }
+
+    async function updateFlights2() {
+        const flightData2 = await fetchFlightData2();
+        console.log(flightData2);
+        flightData2.forEach((flight2, index) => {
+            if (flight2.geography) {
+                const aircraftLatLng = [flight2.geography.longitude, flight2.geography.latitude];
+                const munichLatLng = [11.7861, 48.353802]; // Munich airport coordinates
+                drawRoute(`munich${index}`, munichLatLng, aircraftLatLng, flight2);
+            }
+        });
+    }
+
+    async function updateFlights4() {
+        const flightData2 = await fetchFlightData4();
+        console.log(flightData2);
+        flightData2.forEach((flight2, index) => {
+            if (flight2.geography) {
+                const aircraftLatLng = [flight2.geography.longitude, flight2.geography.latitude];
+                const hamburgLatLng = [13.5020, 52.3667]; // Munich airport coordinates
+                drawRoute(`hamburg${index}`, hamburgLatLng, aircraftLatLng, flight2);
+            }
+        });
+    }
+
+    function drawRoute(id, origin, destination, flight) {
+        const route = {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'LineString',
+                        'coordinates': [origin, destination]
+                    }
+                }
+            ]
+        };
+
+        const point = {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'bearing': turf.bearing(turf.point(origin), turf.point(destination)),
+                        'flight': JSON.stringify(flight) // Store flight information as a string
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': destination
+                    }
+                }
+            ]
+        };
+
+        if (map.getSource(`route${id}`)) {
+            map.getSource(`route${id}`).setData(route);
+            map.getSource(`point${id}`).setData(point);
+        } else {
+            map.addSource(`route${id}`, {
+                'type': 'geojson',
+                'data': route
+            });
+
+            map.addSource(`point${id}`, {
+                'type': 'geojson',
+                'data': point
+            });
+
+            map.addLayer({
+                'id': `route${id}`,
+                'source': `route${id}`,
+                'type': 'line',
+                'paint': {
+                    'line-width': 2,
+                    'line-color': '#007cbf'
+                }
+            });
+
+            map.addLayer({
+                'id': `point${id}`,
+                'source': `point${id}`,
+                'type': 'symbol',
+                'layout': {
+                    'icon-image': 'airport-9',
+                    'icon-size': 1.5,
+                    'icon-rotate': ['get', 'bearing'],
+                    'icon-rotation-alignment': 'map',
+                    'icon-allow-overlap': true,
+                    'icon-ignore-placement': true
+                }
+            });
+
+            map.on('click', `point${id}`, (e) => {
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const flightInfo = e.features[0].properties.flight;
+
+                const jsonFlight = JSON.parse(flightInfo);
+
+                // Ensure the popup is rendered at the clicked point
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(`
+                        <strong>Flight Information:</strong><br>
+                        Status : ${jsonFlight.status.toUpperCase()}<br>
+                        Airline : ${jsonFlight.airline.iataCode}<br>
+                        Arrival Aiport : ${jsonFlight.arrival.iataCode}<br>
+                        Departure Airport : ${jsonFlight.departure.iataCode}<br>
+                    `)
+                    .addTo(map);
+            });
+        }
+    }
+
+
+        function addFrankfurtAirport() {
+        const frankfurtLatLng = [8.5706, 50.0333];
+        const frankfurtPoint = {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': frankfurtLatLng
+                    },
+                    'properties': {
+                        'title': 'Frankfurt Airport'
+                    }
+                }
+            ]
+        };
+
+        map.addSource('frankfurtAirport', {
+            'type': 'geojson',
+            'data': frankfurtPoint
+        });
+
+        map.addLayer({
+            'id': 'frankfurtAirport',
+            'type': 'circle',
+            'source': 'frankfurtAirport',
+            'paint': {
+                'circle-radius': 6,
+                'circle-color': '#ff0000' // Red color
+            }
+        });
+    }
+
+         function addMunichAirport() {
+        const munichLatLng = [11.7861, 48.353802];;
+        const munichPoint = {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': munichLatLng
+                    },
+                    'properties': {
+                        'title': 'Munich Airport'
+                    }
+                }
+            ]
+        };
+
+        map.addSource('munichAirport', {
+            'type': 'geojson',
+            'data': munichPoint
+        });
+
+        map.addLayer({
+            'id': 'munichAirport',
+            'type': 'circle',
+            'source': 'munichAirport',
+            'paint': {
+                'circle-radius': 6,
+                'circle-color': '#ff0000' // Red color
+            }
+        });
+    }
+
+         function addHamburgAirport() {
+        const hamburgLatLng = [13.5020, 52.3667];
+        const hamburgPoint = {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': hamburgLatLng
+                    },
+                    'properties': {
+                        'title': 'Hamburg Airport'
+                    }
+                }
+            ]
+        };
+
+        map.addSource('hamburgAirport', {
+            'type': 'geojson',
+            'data': hamburgPoint
+        });
+
+        map.addLayer({
+            'id': 'hamburgAirport',
+            'type': 'circle',
+            'source': 'hamburgAirport',
+            'paint': {
+                'circle-radius': 6,
+                'circle-color': '#ff0000' // Red color
+            }
+        });
+    }
+
+
+
+
+    map.on('load', () => {
+        updateFlights();
+        updateFlights2();
+        updateFlights4();
+         addFrankfurtAirport();
+          addMunichAirport();
+          addHamburgAirport();
+        setInterval(updateFlights, 180000); // Update every 3 Minutes
+        setInterval(updateFlights2, 180000); // Update every 3 Minutes
+         setInterval(updateFlights4, 180000);
+    });
+</script>
+
+</body>
+</html>
